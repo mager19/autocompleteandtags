@@ -54,12 +54,47 @@ function createATag(element) {
 	<i class="remove-tag" data-name="${element.textContent}">X</i>	
 	`;
 
+	let array1 = [],
+		array2 = [];
 	if (listTags.includes(element.textContent) == false) {
+		if (element.textContent.includes(',')) {
+			array1.push(element.textContent);
+		}
+		else {
+			array2.push(element.textContent);
+		}
+		// console.log({ array1 });
+		// console.log({array2});
+		
 		listTags.push(element.textContent);
 		tagsContainer.appendChild(tag);
 	}
 
+	paila(listTags);
 	return listTags;
+
+}
+
+function paila(listTags) {
+	// console.log(listTags);
+
+	let arraycoma = [],
+		arraysin =[];
+	listTags.forEach((element) => {
+		if (element.includes(',')) {
+			
+			let value = element.split(',')
+
+			
+
+			arraycoma.push(value[1]);
+		} else {
+			arraysin.push(element);
+		}
+	});
+
+	console.log(arraycoma);
+	
 }
 
 //eliminar tag
@@ -75,7 +110,7 @@ function deleteTag(e) {
 		listTags = listTags.filter((item) => item !== dataName);
 	}
 
-	console.log(listTags);
-
+	// console.log(listTags);
+	paila(listTags);
 	return listTags;
 }
